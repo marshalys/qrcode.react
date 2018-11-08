@@ -130,6 +130,7 @@ class QRCodeCanvas extends React.PureComponent<QRProps> {
       bgColor,
       fgColor,
       style,
+      refCanvas,
       ...otherProps
     } = this.props;
     const canvasStyle = {height: size, width: size, ...style};
@@ -138,9 +139,11 @@ class QRCodeCanvas extends React.PureComponent<QRProps> {
         style={canvasStyle}
         height={size}
         width={size}
-        ref={(ref: ?HTMLCanvasElement): ?HTMLCanvasElement =>
-          (this._canvas = ref)
-        }
+        ref={(ref: ?HTMLCanvasElement): ?HTMLCanvasElement => {
+          this._canvas = ref;
+          if (refCanvas) { refCanvas(ref); }
+          return ref;
+        }}
         {...otherProps}
       />
     );
