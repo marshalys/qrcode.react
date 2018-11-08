@@ -49,6 +49,7 @@ type QRProps = {
   bgColor: string,
   fgColor: string,
   style?: ?Object,
+  refCanvas?: Function,
 };
 
 const DEFAULT_PROPS = {
